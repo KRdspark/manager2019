@@ -10,13 +10,19 @@ int main(int argc, char* argv[]) {
     return 0;
   }
   int count = load_file(userlist, argv[1]);
+  if(count==-1){
+	return 0;
+  }
+  else if(count == 0) printf("> Welcome!\n");
+  else printf("> Welcom!! %d records read!\n",count);
   while(1){
-    if(is_login==0) is_login = login(userlist, count);
     menu_id = ask_menu(is_login); // 현재 로그인 되었는지의 여부를 파라미터로 알려야 한다.
-    if(menu_id==1) join(userlist, count);
+    if(menu_id==1) join(userlist, &count);
     else if (menu_id==2) is_login = login(userlist, count);
     else if (menu_id==3) logout(&is_login);
-    else break;
+    else if (menu_id==4) list(userlist,count);
+    else if (menu_id==0) break;
+    else is_login = 0;
   }
   save_file(userlist, count, argv[1]);
   return 0;
