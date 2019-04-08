@@ -7,7 +7,8 @@ all : manager
 
 manager : $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
-manage_debug : $(D_OBJECTS)
+
+manager_debug : $(D_OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 main_d.o : main.c
